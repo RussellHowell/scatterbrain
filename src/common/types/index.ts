@@ -1,5 +1,9 @@
+export type Identity<T extends object> = {
+    id: string  
+} & T;
+
 export type Task = {
-    title: string,
-    description?: string,
+    content: string,
     size: 'small' | 'medium' | 'large'
 }
+
