@@ -1,7 +1,7 @@
-import { Identity, ServerResource, Task } from "../../common/types"
+import { Identity, AsyncResource, Task } from "../../common/types"
 
 type HomeProps = {
-    tasksResource: ServerResource<Identity<Task>[]>
+    tasksResource: AsyncResource<Identity<Task>[]>
 }
 
 export const Home = ({}: HomeProps) => {

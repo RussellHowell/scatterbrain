@@ -7,7 +7,7 @@ export type Task = {
     size: 'small' | 'medium' | 'large'
 }
 
-export type ServerResource<T> = {
+export type AsyncResource<T> = {
     value?: T,
     initialized: boolean,
     status: 'idle' | 'syncing',
