@@ -7,3 +7,9 @@ export type Task = {
     size: 'small' | 'medium' | 'large'
 }
 
+export type ServerResource<T> = {
+    value?: T,
+    initialized: boolean,
+    status: 'idle' | 'syncing',
+    error?: { code: number, message: string }
+}
