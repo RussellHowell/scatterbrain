@@ -9,7 +9,6 @@ export type Task = {
     size: TaskSize
 }
 
-
 export type AsyncResourceStatus = 'idle' | 'syncing';
 
 export type AsyncResource<T> = {
