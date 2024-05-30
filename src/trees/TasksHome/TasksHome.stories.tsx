@@ -22,7 +22,8 @@ const meta: Meta<{
     },
     render: ({ tasksResourceInitialized, tasksResourceStatus }) => {
         return (
-            <Home tasksResource={ { 
+            <Home 
+            tasksResource={ { 
                 status: tasksResourceStatus, 
                 initialized: tasksResourceInitialized, 
                 value: [],

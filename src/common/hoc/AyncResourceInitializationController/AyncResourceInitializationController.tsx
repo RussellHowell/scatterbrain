@@ -1,5 +1,6 @@
 import { ReactNode } from "react"
 import { AsyncResource } from "../../types"
+import { AnimatePresence, MotionProps, motion } from "framer-motion"
 
 type AyncResourceInitializationControllerProps<T> = {
     resources: AsyncResource<T>[] 
@@ -19,11 +20,35 @@ export const AyncResourceInitializationController = <T, >({
     const someFailedInit = resources.some(({ initialized, error, status }) => !initialized && error !== undefined && status === 'idle');
     const allInitialized = resources.every(({ initialized }) => initialized);
 
+    const motionProps: MotionProps = {
+        initial: { opacity: 0,  },
+        animate: { opacity: 1 },
+        exit: { opacity: 0 },
+    }
+
     return (
-        <>
-            { someInitializing && !someFailedInit && renderInitializationState() }
-            { someFailedInit && renderInitializationFailureState() }
-            { allInitialized && renderInitializedState() }
-        </>
+        <AnimatePresence mode='wait'>
+            { 
+                someInitializing && !someFailedInit && ( 
+                    <motion.div key='initializing' { ...motionProps }>
+                        { renderInitializationState() }
+                    </motion.div>
+                ) 
+            }
+            { 
+                someFailedInit && ( 
+                    <motion.div key='init failure' { ...motionProps }>
+                        { renderInitializationFailureState() }
+                    </motion.div>
+                ) 
+            }
+            { 
+                allInitialized && ( 
+                    <motion.div key='init success' { ...motionProps }>
+                        { renderInitializedState() }
+                    </motion.div>
+                ) 
+            }
+        </AnimatePresence>
     );
 }
