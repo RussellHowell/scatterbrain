@@ -7,9 +7,27 @@ const meta: Meta<{
     tasksResourceStatus: AsyncResourceStatus
 }> = {
     title: 'Component Trees/Tasks Home',
-    render: () => {
+    args: {
+        tasksResourceInitialized: false,
+        tasksResourceStatus: 'idle'
+    },
+    argTypes: {
+        tasksResourceInitialized: {
+            control: 'boolean'
+        },
+        tasksResourceStatus: {
+            control: 'select',
+            options: ['idle', 'syncing'] satisfies AsyncResourceStatus[]
+        }
+    },
+    render: ({ tasksResourceInitialized, tasksResourceStatus }) => {
         return (
-            <Home tasksResource={ { status: 'syncing', initialized: false } } />
+            <Home tasksResource={ { 
+                status: tasksResourceStatus, 
+                initialized: tasksResourceInitialized, 
+                value: [],
+                error: (!tasksResourceInitialized && tasksResourceStatus === 'idle') ? { code: 500, message: "Internal Server Error" } : undefined
+            } } />
         )
     }
 }
