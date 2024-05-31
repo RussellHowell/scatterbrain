@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { Home } from "./Tasks";
+import { Tasks } from "./Tasks";
 import { AsyncResourceStatus, Identity, Task } from "../../common/types";
 import { Box } from "@chakra-ui/layout";
 
@@ -8,7 +8,7 @@ const meta: Meta<{
     tasksResourceStatus: AsyncResourceStatus
     hasSmallTasks: boolean
 }> = {
-    title: 'Component Trees/Tasks Home',
+    title: 'Component Trees/Tasks',
     parameters: { layout: 'fullscreen' },
     args: {
         tasksResourceInitialized: false,
@@ -34,7 +34,7 @@ const meta: Meta<{
 
         return (
             <Box height='100vh' width='100vw'>
-                <Home 
+                <Tasks 
                     h='inherit'
                     w='inherit'
                     justifyContent='center'

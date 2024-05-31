@@ -1,13 +1,13 @@
 import { Heading, Spinner, Stack, StyleProps } from "@chakra-ui/react"
 import { Identity, AsyncResource, Task } from "../../common/types"
 import { AyncResourceInitializationController } from "../../common/hoc"
-import { TasksHomeMenu } from "../TasksHomeMenu/TasksHomeMenu";
+import { TasksPicker } from "./TasksPicker";
 
-type HomeProps = {
+type TasksProps = {
     tasksResource: AsyncResource<Identity<Task>[]>
 } & StyleProps; 
 
-export const Home = ({ tasksResource, ...styleProps }: HomeProps) => {
+export const Tasks = ({ tasksResource, ...styleProps }: TasksProps) => {
 	return (
 			<AyncResourceInitializationController
 				resources={ [tasksResource] }
@@ -30,7 +30,7 @@ export const Home = ({ tasksResource, ...styleProps }: HomeProps) => {
 					</Stack>
 				) }
 				renderInitializedState={ () => (
-					<TasksHomeMenu 
+					<TasksPicker 
 						tasks={ tasksResource.value || [] } 
 						{ ...styleProps }
 					/>

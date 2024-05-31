@@ -3,16 +3,14 @@ import { Identity, Task } from "../../common/types"
 import { Button } from "../../common/components"
 import { AddIcon, QuestionOutlineIcon } from "@chakra-ui/icons"
 
-type TasksHomeMenuProps = {
+type TasksPickerProps = {
   tasks: Identity<Task>[]
 } & StyleProps
 
-export const TasksHomeMenu = ({ tasks, ...styleProps }: TasksHomeMenuProps) => {
+export const TasksPicker = ({ tasks, ...styleProps }: TasksPickerProps) => {
   const smallTasks = tasks.filter(({ size }) => size === 'small');
   const mediumTasks = tasks.filter(({ size }) => size === 'medium');
   const largeTasks = tasks.filter(({ size }) => size === 'large');
-
-
 
   return (
     <Stack { ...styleProps }>
