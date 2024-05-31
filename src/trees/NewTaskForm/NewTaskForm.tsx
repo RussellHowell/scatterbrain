@@ -1,11 +1,22 @@
 import { Button, Radio, RadioGroup, Stack, StackProps, Textarea } from "@chakra-ui/react";
-import { Controller, useForm } from "react-hook-form";
-import { Task, TaskSize } from "../../common/types";
+import { Controller, Form, useForm } from "react-hook-form";
+import { Identity, Task, TaskSize } from "../../common/types";
+import { useState } from "react";
 
-type NewTaskFormProps = StackProps;
+type NewTaskFormProps = {
+  onTaskCreate: (task: Task) => Promise<Identity<Task>>
+} & StackProps;
 
-export const NewTaskForm = ({ ...styleProps }: NewTaskFormProps) => {
-  const { control, formState: { isValid } } = useForm<Task>();
+export const NewTaskForm = ({ onTaskCreate, ...styleProps }: NewTaskFormProps) => {
+  const { control, formState: { isValid }, getValues } = useForm<Task>();
+
+  const [submitState, setSubmitState] = useState<'idle' | 'submitting'>('idle');
+  const handleSubmit = async () => {
+    setSubmitState('submitting')
+    const response = await onTaskCreate(getValues());
+    setSubmitState('idle');
+    alert(response.id);
+  }
 
   return (
     <Stack { ...styleProps }>
@@ -39,6 +50,8 @@ export const NewTaskForm = ({ ...styleProps }: NewTaskFormProps) => {
         )} 
       />
       <Button
+        onClick={ handleSubmit }
+        isLoading={ submitState === 'submitting'} 
         isDisabled={ !isValid }
         variant='outline'>
           Add Task

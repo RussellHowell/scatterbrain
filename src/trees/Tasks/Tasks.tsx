@@ -5,6 +5,7 @@ import { TasksPicker } from "./TasksPicker";
 
 type TasksProps = {
     tasksResource: AsyncResource<Identity<Task>[]>
+		onTaskCreate: (task: Task) => Promise<Identity<Task>>
 } & StyleProps; 
 
 export const Tasks = ({ tasksResource, ...styleProps }: TasksProps) => {

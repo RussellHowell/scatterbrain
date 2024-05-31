@@ -6,9 +6,10 @@ import { NewTaskForm } from "../NewTaskForm/NewTaskForm"
 
 type TasksPickerProps = {
   tasks: Identity<Task>[]
+  onTaskCreate: (task: Task) => Promise<Identity<Task>>
 } & StyleProps
 
-export const TasksPicker = ({ tasks, ...styleProps }: TasksPickerProps) => {
+export const TasksPicker = ({ tasks, onTaskCreate, ...styleProps }: TasksPickerProps) => {
   const smallTasks = tasks.filter(({ size }) => size === 'small');
   const mediumTasks = tasks.filter(({ size }) => size === 'medium');
   const largeTasks = tasks.filter(({ size }) => size === 'large');
@@ -91,7 +92,7 @@ export const TasksPicker = ({ tasks, ...styleProps }: TasksPickerProps) => {
       <Modal isOpen={ isOpen } onClose={ onClose } size='full'>
         <ModalContent h="100%">
           <Center h="100%">  
-            <NewTaskForm spacing={ 25 }/>
+            <NewTaskForm onTaskCreate={ onTaskCreate } spacing={ 25 }/>
           </Center>
         </ModalContent>
       </Modal>  
