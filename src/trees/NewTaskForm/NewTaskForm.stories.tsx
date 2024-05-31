@@ -7,7 +7,7 @@ const meta: Meta = {
   render: () => {
     return (
       <Center>
-        <NewTaskForm spacing={ 30 } alignItems='center'/>
+        <NewTaskForm spacing={ 30 } alignItems='center' onTaskCreate={ () => new Promise((r) => {})}/>
       </Center>
     )
   } 
