@@ -93,7 +93,7 @@ export const TasksPicker = ({ tasks, onTaskCreate, ...styleProps }: TasksPickerP
         <ModalContent h="100%">
           <ModalCloseButton />
           <Center h="100%">  
-            <NewTaskForm onTaskCreate={ onTaskCreate} spacing={ 25 }/>
+            <NewTaskForm onTaskCreate={ onTaskCreate } spacing={ 25 }/>
           </Center>
         </ModalContent>
       </Modal>  
