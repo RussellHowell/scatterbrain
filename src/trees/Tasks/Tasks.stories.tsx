@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { Home } from "./TasksHome";
+import { Home } from "./Tasks";
 import { AsyncResourceStatus, Identity, Task } from "../../common/types";
 import { Box } from "@chakra-ui/layout";
 
