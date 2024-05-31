@@ -45,6 +45,7 @@ export const NewTaskForm = ({ onTaskCreate, ...styleProps }: NewTaskFormProps) =
                 render={ ({ field }) => (
                   <motion.div { ...motionProps }>
                     <Textarea 
+                      isDisabled={ submitState === 'submitting' }
                       size="lg"
                       placeholder="What do you have to do?"
                       variant="unstyled"
@@ -59,11 +60,11 @@ export const NewTaskForm = ({ onTaskCreate, ...styleProps }: NewTaskFormProps) =
                 control={ control }
                 render={ ({ field }) => (
                   <motion.div { ...motionProps }>
-                    <RadioGroup { ...field }>
+                    <RadioGroup { ...field } >
                       <Stack direction='row'>
                         {
                           (['small', 'medium', 'large'] satisfies TaskSize[]).map(size => (
-                            <Radio key={ size } value={ size } size='lg'>{ size }</Radio>
+                            <Radio key={ size } value={ size } size='lg' isDisabled={ submitState === 'submitting' }>{ size }</Radio>
                           ))
                         }
                       </Stack>
