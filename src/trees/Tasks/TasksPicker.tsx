@@ -2,7 +2,8 @@ import { Center, Flex, Heading, IconButton, Modal, ModalCloseButton, ModalConten
 import { Identity, Task } from "../../common/types"
 import { Button } from "../../common/components"
 import { AddIcon, QuestionOutlineIcon } from "@chakra-ui/icons"
-import { NewTaskForm } from "../NewTaskForm/NewTaskForm"
+import { NewTaskForm } from "../NewTaskModal/NewTaskModalForm"
+import { NewTaskModal } from "../NewTaskModal/NewTaskModal"
 
 type TasksPickerProps = {
   tasks: Identity<Task>[]
@@ -89,14 +90,7 @@ export const TasksPicker = ({ tasks, onTaskCreate, ...styleProps }: TasksPickerP
           )
         }
       </Stack>
-      <Modal isOpen={ isOpen } onClose={ onClose } size='full'>
-        <ModalContent h="100%">
-          <ModalCloseButton />
-          <Center h="100%">  
-            <NewTaskForm onTaskCreate={ onTaskCreate } spacing={ 25 }/>
-          </Center>
-        </ModalContent>
-      </Modal>  
+      <NewTaskModal isOpen={ isOpen } onClose={ onClose }onTaskCreate={ onTaskCreate } />
     </>
   );
 }

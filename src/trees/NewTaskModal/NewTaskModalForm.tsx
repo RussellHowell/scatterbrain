@@ -16,8 +16,9 @@ export const NewTaskForm = ({ onTaskCreate, ...styleProps }: NewTaskFormProps) =
   const [submitState, setSubmitState] = useState<'idle' | 'submitting' | 'complete'>('idle');
   const handleSubmit = async () => {
     setSubmitState('submitting')
-    const response = await onTaskCreate(getValues());
+    await onTaskCreate(getValues());
     setSubmitState('complete');
+    // todo handle errors
   }
 
   const handleFormReset = () => {
