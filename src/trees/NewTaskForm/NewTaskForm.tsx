@@ -31,7 +31,7 @@ export const NewTaskForm = ({ ...styleProps }: NewTaskFormProps) => {
             <Stack direction='row'>
               {
                 (['small', 'medium', 'large'] satisfies TaskSize[]).map(size => (
-                  <Radio key={ size } value={ size }>{ size }</Radio>
+                  <Radio key={ size } value={ size } size='lg'>{ size }</Radio>
                 ))
               }
             </Stack>
