@@ -1,8 +1,7 @@
-import { Center, Flex, Heading, IconButton, Modal, ModalCloseButton, ModalContent, Stack, StyleProps, Text, useDisclosure } from "@chakra-ui/react"
+import { Center, Flex, Heading, IconButton, Stack, StyleProps, Text, useDisclosure } from "@chakra-ui/react"
 import { Identity, Task } from "../../common/types"
 import { Button } from "../../common/components"
 import { AddIcon, QuestionOutlineIcon } from "@chakra-ui/icons"
-import { NewTaskForm } from "../NewTaskModal/NewTaskModalForm"
 import { NewTaskModal } from "../NewTaskModal/NewTaskModal"
 
 type TasksPickerProps = {

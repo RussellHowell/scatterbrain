@@ -11,7 +11,7 @@ const meta: Meta = {
     const disclosure = useDisclosure();
 
     const handleTaskCreate = async () => {
-      return new Promise<Identity<Task>>((resolve, reject) => {
+      return new Promise<Identity<Task>>((resolve) => {
         setTimeout(() => {
           resolve({ id: "123", content: "foo", size: "medium" })
         }, 2000)
