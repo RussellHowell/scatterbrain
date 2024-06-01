@@ -1,8 +1,9 @@
 import { Center, Flex, Heading, IconButton, Stack, StyleProps, Text, useDisclosure } from "@chakra-ui/react"
-import { Identity, Task } from "../../common/types"
+import { Identity, Task, TaskSize } from "../../common/types"
 import { Button } from "../../common/components"
 import { AddIcon, QuestionOutlineIcon } from "@chakra-ui/icons"
 import { NewTaskModal } from "../NewTaskModal/NewTaskModal"
+import { TasksPickerModalButton } from "./TasksPickerModalButton"
 
 type TasksPickerProps = {
   tasks: Identity<Task>[]
@@ -10,11 +11,17 @@ type TasksPickerProps = {
 } & StyleProps
 
 export const TasksPicker = ({ tasks, onTaskCreate, ...styleProps }: TasksPickerProps) => {
-  const smallTasks = tasks.filter(({ size }) => size === 'small');
-  const mediumTasks = tasks.filter(({ size }) => size === 'medium');
-  const largeTasks = tasks.filter(({ size }) => size === 'large');
 
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { 
+    isOpen: newTaskModalOpen, 
+    onOpen: onNewTaskModalOpen, 
+    onClose: onNewTaskModalClose 
+} = useDisclosure();
+
+  const tasksBySize: { [key in TaskSize]: Identity<Task>[] }  = tasks.reduce((accum, task) => ({
+    ...accum,
+    [task.size]: [...accum[task.size], task]
+  }), { small: [], medium: [], large: []})
 
   return (
     <>
@@ -33,7 +40,7 @@ export const TasksPicker = ({ tasks, onTaskCreate, ...styleProps }: TasksPickerP
                 size="lg" 
                 variant="outline" 
                 rightIcon={ <AddIcon /> }
-                onClick={ onOpen }>
+                onClick={ onNewTaskModalOpen }>
                 Add Tasks
               </Button>
             </Stack>
@@ -46,7 +53,7 @@ export const TasksPicker = ({ tasks, onTaskCreate, ...styleProps }: TasksPickerP
                 <Heading>
                   You have { tasks.length } Tasks
                 </Heading>
-                <Button onClick={ onOpen } size="lg" variant="outline" rightIcon={ <AddIcon /> } mb="1em">
+                <Button onClick={ onNewTaskModalOpen } size="lg" variant="outline" rightIcon={ <AddIcon /> } mb="1em">
                   Add New Tasks
                 </Button>
               </Stack>
@@ -59,27 +66,19 @@ export const TasksPicker = ({ tasks, onTaskCreate, ...styleProps }: TasksPickerP
                   height={ 300 }
                   width={["100%", 600]}
                 >
-                  <Button 
-                    size="lg"
-                    width={["95%", 200]}
-                    isDisabled={ smallTasks.length === 0 }
-                  >
-                    Small Tasks ({ smallTasks.length })
-                  </Button>
-                  <Button 
-                    size="lg"
-                    width={["95%", 200]}
-                    isDisabled={ mediumTasks.length === 0 }
-                  >
-                    Medium Tasks ({ mediumTasks.length })
-                  </Button>
-                  <Button 
-                    size="lg"
-                    width={["95%", 200]}
-                    isDisabled={ largeTasks.length === 0 }
-                  >
-                    Large Tasks ({ largeTasks.length })
-                  </Button>
+                  { 
+                    Object.entries(tasksBySize).map(([taskSize, taskArray]) => (
+                      <TasksPickerModalButton 
+                        size="lg"
+                        key={ taskSize } 
+                        tasks={ taskArray }
+                        width={["95%", 200]}
+                        isDisabled={ taskArray.length === 0 }
+                        >
+                        { taskSize } ({ taskArray.length })
+                      </TasksPickerModalButton>
+                    )) 
+                  }
                 </Stack>
               </Center>
               <Center height={ 100 }>
@@ -89,7 +88,7 @@ export const TasksPicker = ({ tasks, onTaskCreate, ...styleProps }: TasksPickerP
           )
         }
       </Stack>
-      <NewTaskModal isOpen={ isOpen } onClose={ onClose }onTaskCreate={ onTaskCreate } />
+      <NewTaskModal isOpen={ newTaskModalOpen } onClose={ onNewTaskModalClose } onTaskCreate={ onTaskCreate } />
     </>
   );
 }
