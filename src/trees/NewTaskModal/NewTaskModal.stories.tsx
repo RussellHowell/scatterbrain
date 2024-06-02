@@ -5,7 +5,6 @@ import { NewTaskModal } from "./NewTaskModal";
 import { Identity, Task } from "../../common/types";
 
 const meta: Meta = {
-  title: 'Component Trees/New Task Modal',
   render: () => {
 
     const disclosure = useDisclosure();
@@ -34,4 +33,4 @@ const meta: Meta = {
 
 export default meta;
 
-export const NewTaskModalStory: StoryObj = {};
+export const Story: StoryObj = {};

@@ -3,7 +3,7 @@ import { Identity, Task, TaskSize } from "../../common/types"
 import { Button } from "../../common/components"
 import { AddIcon, QuestionOutlineIcon } from "@chakra-ui/icons"
 import { NewTaskModal } from "../NewTaskModal/NewTaskModal"
-import { TasksPickerModalButton } from "./TasksPickerModalButton"
+import { TasksPickerModalButton } from "./TasksPickerModalButton/TasksPickerModalButton"
 
 type TasksPickerProps = {
   tasks: Identity<Task>[]

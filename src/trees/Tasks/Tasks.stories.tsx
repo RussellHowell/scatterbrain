@@ -9,7 +9,6 @@ const meta: Meta<{
     tasksResourceStatus: AsyncResourceStatus
     tasks: Identity<Task>[]
 }> = {
-    title: 'Component Trees/Tasks',
     parameters: { layout: 'fullscreen' },
     args: {
         tasksResourceInitialized: false,
@@ -68,4 +67,8 @@ const meta: Meta<{
 export default meta;
 
 
-export const Story: StoryObj = {}; 
+export const Story: StoryObj = {
+    args: {
+        tasksResourceInitialized: true
+    }
+}; 
