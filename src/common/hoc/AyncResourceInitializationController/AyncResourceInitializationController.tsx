@@ -2,19 +2,19 @@ import { ReactNode } from "react"
 import { AsyncResource } from "../../types"
 import { AnimatePresence, MotionProps, motion } from "framer-motion"
 
-type AyncResourceInitializationControllerProps<T> = {
-    resources: AsyncResource<T>[] 
+type AyncResourceInitializationControllerProps = {
+    resources: AsyncResource<unknown>[] 
     renderInitializationState: () => ReactNode
     renderInitializationFailureState: () => ReactNode
     renderInitializedState: () => ReactNode
 }
 
-export const AyncResourceInitializationController = <T, >({
+export const AyncResourceInitializationController = ({
     resources,
     renderInitializationState,
     renderInitializedState, 
     renderInitializationFailureState
-}:  AyncResourceInitializationControllerProps<T>) => {
+}:  AyncResourceInitializationControllerProps) => {
 
     const someInitializing = resources.some(({ initialized, status }) => !initialized && status === 'syncing' );
     const someFailedInit = resources.some(({ initialized, error, status }) => !initialized && error !== undefined && status === 'idle');
