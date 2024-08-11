@@ -39,7 +39,7 @@ export const NewTaskForm = ({ onTaskCreate, ...styleProps }: NewTaskFormProps) =
           submitState !== 'complete' && (
             <>
               <Controller
-                name="content"
+                name="description"
                 rules={{ required: true }}
                 control={ control }
                 render={ ({ field }) => (

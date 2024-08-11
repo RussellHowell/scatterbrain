@@ -5,7 +5,7 @@ export type Identity<T extends object> = {
 export type TaskSize = 'small' | 'medium' | 'large';
 
 export type Task = {
-    content: string,
+    description: string,
     size: TaskSize
 }
 

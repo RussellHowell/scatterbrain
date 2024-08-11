@@ -29,7 +29,7 @@ export const TasksPickerModalButton = ({ tasks, onClick, ...buttonProps }: Tasks
             <Center h="100%">
               <Stack>
                 <Text>
-                { stagedTask?.content }
+                { stagedTask?.description }
                 </Text>
                 <Button>
                   Accept Task

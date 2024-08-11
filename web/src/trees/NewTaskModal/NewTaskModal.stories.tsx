@@ -12,7 +12,7 @@ const meta: Meta = {
     const handleTaskCreate = async () => {
       return new Promise<Identity<Task>>((resolve) => {
         setTimeout(() => {
-          resolve({ id: "123", content: "foo", size: "medium" })
+          resolve({ id: "123", description: "foo", size: "medium" })
         }, 2000)
       })
     }
