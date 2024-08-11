@@ -1,0 +1,67 @@
+openapi: 3.0.0
+info:
+  title: Scatterbrain API
+  description: A todo app for scatterbrains 
+  version: 0.0.1
+
+# servers:
+  # - url: https://api.yourdomain.com/v1
+    # description: Production server
+
+paths:
+  /tasks:
+    get:
+      summary: Retrieve a list of tasks
+      responses:
+        '200':
+          description: A list of tasks
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  allOf:
+                    - $ref: '#/components/schemas/Task'
+                    - $ref: '#/components/schemas/Identity'
+    post:
+      summary: Create a new task
+      requestBody:
+        description: The task to create
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Task'
+      responses:
+        '201':
+          description: Task created successfully
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/Task'
+                  - $ref: '#/components/schemas/Identity'
+components: 
+  schemas:
+    Identity:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier
+      required:
+        - id
+    Task:
+      type: object
+      properties:
+        description:
+          type: string
+        size:
+          type: string
+          enum:
+          - small
+          - medium 
+          - large
+      required:
+        - description
+        - size 
