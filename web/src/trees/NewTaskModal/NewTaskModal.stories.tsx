@@ -24,7 +24,7 @@ const meta: Meta = {
         </Button>
         <NewTaskModal
           { ...disclosure }
-          onTaskCreate={ handleTaskCreate  }
+          onTaskCreate={ handleTaskCreate }
         />
       </>
     )

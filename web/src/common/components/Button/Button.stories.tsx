@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { Button } from "./Button";
 
-const meta: Meta<{}> = {
+const meta: Meta<never> = {
     title: 'components/Button',
     render: () => {
         return (
