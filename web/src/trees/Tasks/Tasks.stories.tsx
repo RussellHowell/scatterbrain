@@ -30,7 +30,7 @@ const meta: Meta<{
         const [tasksState, setTasksState] = useState(tasks);
 
         const handleCreateTask = async (task: Task) => {
-            return new Promise<Identity<Task>>((resolve, reject) => {
+            return new Promise<Identity<Task>>((resolve) => {
                 setTimeout(() => {
                     const newTask: Identity<Task> = { ...task, id: nextTaskID.toString() }
                     setNextTaskID(currentTaskID => {
